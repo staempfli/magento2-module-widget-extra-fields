@@ -14,8 +14,9 @@ define([
 
     $.widget('staempfli_widgetextrafields.imagefield', {
         options: {
-            imagePathInputId: null,
-            imagePreviewDivId: null,
+            imagePathInputSelector: null,
+            imagePreviewDivSelector: null,
+            imageDeleteButtonSelector: null,
             mediaUrl: null
         },
 
@@ -25,23 +26,23 @@ define([
         },
 
         getImagePathInput: function() {
-            return $('#' + this.options.imagePathInputId);
-        },
-
-        getImageDiv: function() {
-            return $('#' + this.options.imagePreviewDivId);
+            return this.element.find(this.options.imagePathInputSelector).first();
         },
 
         getDeleteButton: function() {
-            return this.getImageDiv().find('button.action-remove').first();
+            return this.element.find(this.options.imageDeleteButtonSelector).first();
+        },
+
+        getPreviewImageDiv: function() {
+            return this.element.find(this.options.imagePreviewDivSelector).first();
         },
 
         getLinkElement: function() {
-            return this.getImageDiv().find('a').first();
+            return this.getPreviewImageDiv().find('a').first();
         },
 
         getImgElement: function() {
-            return this.getImageDiv().find('img').first();
+            return this.getPreviewImageDiv().find('img').first();
         },
 
         updateImage: function(event) {
@@ -49,14 +50,14 @@ define([
             var newImageUrl = this.options.mediaUrl + '/' + newImagePath;
             this.getLinkElement().attr('href', newImageUrl);
             this.getImgElement().attr('src', newImageUrl);
-            this.getImageDiv().show();
+            this.getPreviewImageDiv().show();
         },
 
         deleteImage: function(event) {
             this.getImagePathInput().val('');
             this.getLinkElement().attr('href', '');
             this.getImgElement().attr('src', '');
-            this.getImageDiv().hide();
+            this.getPreviewImageDiv().hide();
         }
 
     });

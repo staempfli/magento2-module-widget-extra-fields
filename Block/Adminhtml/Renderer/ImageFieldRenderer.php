@@ -49,55 +49,24 @@ class ImageFieldRenderer extends Template implements FormElementRenderer
         return $this->toHtml();
     }
 
-    public function getLabel(): string
+    public function getElement(): AbstractElement
     {
-        return $this->element->getLabel()??'no-label';
+        return $this->element;
     }
 
-    public function getRequiredClass(): string
+    public function getUploadButtonOnClickAction(string $elementId): string
     {
-        return ($this->element->getRequired()) ? ' required _required' : '';;
-    }
-
-    public function imagePathInputId(): string
-    {
-        return 'image-path-' . $this->element->getId();
-    }
-
-    public function getImagePreviewDivId(): string
-    {
-        return 'image-preview-' . $this->element->getId();
-    }
-
-    public function getUploadButtonHtml(): string
-    {
-        $sourceUrl = $this->getUrl(
+        $mediaBrowserAjaxUrl = $this->getUrl(
             'cms/wysiwyg_images/index',
-            ['target_element_id' => $this->imagePathInputId(), 'type' => 'file']
+            ['target_element_id' => $elementId, 'type' => 'file']
         );
-        $uploadButton = $this->getLayout()->createBlock('Magento\Backend\Block\Widget\Button')
-            ->setType('button')
-            ->setClass('btn-chooser')
-            ->setLabel('Upload')
-            ->setOnClick('MediabrowserUtility.openDialog("'. $sourceUrl .'")');
-        return $uploadButton->toHtml();
-    }
-
-    public function getImagePathFieldHtml(): string
-    {
-        $imagePathField = $this->formElementFactory->create("hidden", ['data' => $this->element->getData()]);
-        $imagePathField->setId($this->imagePathInputId());
-        $imagePathField->setForm($this->element->getForm());
-        if ($this->element->getRequired()) {
-            $imagePathField->addClass('required-entry');
-        }
-        return $imagePathField->getElementHtml();
+        return "MediabrowserUtility.openDialog('$mediaBrowserAjaxUrl')";
     }
 
     public function getImageUrl(): string
     {
         if ($this->element->getData('value')) {
-            return $this->getMediaUrl() . DIRECTORY_SEPARATOR . $this->element->getData('value');
+            return $this->getMediaUrl() . DIRECTORY_SEPARATOR . $this->element->getValue();
         }
         return "";
     }

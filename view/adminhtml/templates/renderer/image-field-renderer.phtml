@@ -8,25 +8,35 @@
 ?>
 <?php
 /** @var \Staempfli\WidgetExtraFields\Block\Adminhtml\Renderer\ImageFieldRenderer $block */
+$element = $block->getElement();
 $imageUrl = $block->getImageUrl();
-$displayStyle = $imageUrl ? 'block' : 'none';
 ?>
-<div class="widget-image-field admin__field field <?php echo $block->getRequiredClass(); ?>"
+<div class="widget-image-field admin__field field <?php echo $element->getRequired()? 'required _required' : ''; ?>"
      data-mage-init='{
      "widgetImageField": {
-            "imagePathInputId": "<?php echo $block->imagePathInputId(); ?>",
-            "imagePreviewDivId": "<?php echo $block->getImagePreviewDivId(); ?>",
+            "imagePathInputSelector": "#<?php echo $element->getId(); ?>",
+            "imagePreviewDivSelector": "div.file-uploader-preview",
+            "imageDeleteButtonSelector": "button.action-remove",
             "mediaUrl": "<?php echo $block->getMediaUrl(); ?>"
         }
      }'
 >
-    <label class="label admin__field-label"><span><?php echo $block->getLabel(); ?></span></label>
+    <label class="label admin__field-label"><span><?php echo $element->getLabel(); ?></span></label>
     <div class="admin__field-control control">
-        <?php echo $block->getUploadButtonHtml(); ?>
-        <?php echo $block->getImagePathFieldHtml(); ?>
+        <button title="<?php echo __('Upload');?>"
+                type="button"
+                class="action-default scalable"
+                onclick="<?php echo $block->getUploadButtonOnClickAction($element->getId()); ?>">
+            <span><?php echo __('Upload');?></span>
+        </button>
+        <input id="<?php echo $element->getId(); ?>"
+               name="<?php echo $element->getName(); ?>"
+               type="hidden"
+               value="<?php echo $element->getValue(); ?>"
+               class="widget-option <?php echo $element->getRequired()? 'required-entry _required' : ''; ?>"
+        />
         <div class="file-uploader-summary">
-            <div id="<?php echo $block->getImagePreviewDivId(); ?>"
-                 class="file-uploader-preview" style="display:<?php echo $displayStyle; ?>">
+            <div class="file-uploader-preview" style="display:<?php echo $imageUrl ? 'block' : 'none'; ?>">
                 <a target="_blank" href="<?php echo $imageUrl; ?>">
                     <img class="preview-image" tabindex="0" src="<?php echo $imageUrl; ?>">
                 </a>
