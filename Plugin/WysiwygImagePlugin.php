@@ -9,10 +9,21 @@
 namespace Staempfli\WidgetExtraFields\Plugin;
 
 use Magento\Cms\Helper\Wysiwyg\Images as WysiwygImageHelper;
-use Magento\Cms\Model\Wysiwyg\Config as WysiwygConfig;
+use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\FileSystem;
 
 class WysiwygImagePlugin
 {
+    /**
+     * @var \Magento\Framework\Filesystem\Directory\ReadInterface
+     */
+    private $mediaDir;
+
+    public function __construct(FileSystem $fileSystem)
+    {
+        $this->mediaDir = $fileSystem->getDirectoryRead(DirectoryList::MEDIA);
+    }
+
     /**
      * @param WysiwygImageHelper $subject
      * @param callable $proceed
@@ -27,23 +38,19 @@ class WysiwygImagePlugin
         $filename,
         $renderAsTag = false
     ) {
-        if ($this->shouldSimplyReturnRelativePath($renderAsTag)) {
-            return $this->getWysiwygRelativePath($filename);
+        if ($this->returnRelativePath($renderAsTag)) {
+            $absolutePath = $subject->getCurrentPath() . '/' . $filename;
+            return $this->mediaDir->getRelativePath($absolutePath);
         }
         $result = $proceed();
         return $result;
     }
 
-    private function shouldSimplyReturnRelativePath($renderAsTag)
+    private function returnRelativePath($renderAsTag): bool
     {
         if (!$renderAsTag) {
             return true;
         }
         return false;
-    }
-
-    private function getWysiwygRelativePath($filename)
-    {
-        return WysiwygConfig::IMAGE_DIRECTORY . DIRECTORY_SEPARATOR . $filename;
     }
 }
