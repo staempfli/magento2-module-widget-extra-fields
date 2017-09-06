@@ -7,10 +7,10 @@
 
 /*jshint jquery:true*/
 define([
-    "jquery",
-    "jquery/ui"
+    'jquery',
+    'jquery/ui'
 ], function ($) {
-    "use strict";
+    'use strict';
 
     $.widget('staempfli_widgetextrafields.imagefield', {
         options: {
