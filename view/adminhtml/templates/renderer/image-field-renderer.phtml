@@ -1,0 +1,48 @@
+<?php
+/**
+ * image-field-renderer.phtml
+ *
+ * @copyright Copyright © 2017 Staempfli AG. All rights reserved.
+ * @author    juan.alonso@staempfli.com
+ */
+?>
+<?php
+/** @var \Staempfli\WidgetExtraFields\Block\Adminhtml\Renderer\ImageFieldRenderer $block */
+$imageUrl = $block->getImageUrl();
+$displayStyle = $imageUrl ? 'block' : 'none';
+?>
+<div class="widget-image-field admin__field field <?php echo $block->getRequiredClass(); ?>"
+     data-mage-init='{
+     "widgetImageField": {
+            "imagePathInputId": "<?php echo $block->imagePathInputId(); ?>",
+            "imagePreviewDivId": "<?php echo $block->getImagePreviewDivId(); ?>",
+            "mediaUrl": "<?php echo $block->getMediaUrl(); ?>"
+        }
+     }'
+>
+    <label class="label admin__field-label"><span><?php echo $block->getLabel(); ?></span></label>
+    <div class="admin__field-control control">
+        <?php echo $block->getUploadButtonHtml(); ?>
+        <?php echo $block->getImagePathFieldHtml(); ?>
+        <div class="file-uploader-summary">
+            <div id="<?php echo $block->getImagePreviewDivId(); ?>"
+                 class="file-uploader-preview" style="display:<?php echo $displayStyle; ?>">
+                <a target="_blank" href="<?php echo $imageUrl; ?>">
+                    <img class="preview-image" tabindex="0" src="<?php echo $imageUrl; ?>">
+                </a>
+                <div class="actions">
+                    <button type="button" class="action-remove" title="Delete image">
+                        <span><?php echo __("Delete image"); ?></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //<![CDATA[
+    require(['jquery'], function ($) {
+        $('#widget_options').trigger('contentUpdated');
+    });
+    //]]>
+</script>

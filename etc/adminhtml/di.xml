@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * di
+ *
+ * @copyright Copyright © 2017 Staempfli AG. All rights reserved.
+ * @author    juan.alonso@staempfli.com
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+   <type name="Magento\Cms\Helper\Wysiwyg\Images">
+       <plugin name="staempfli_wysiwyg_image_html_declaration" type="\Staempfli\WidgetExtraFields\Plugin\WysiwygImagePlugin"/>
+   </type>
+</config>
