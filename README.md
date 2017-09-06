@@ -36,12 +36,12 @@ Use `Staempfli\WidgetExtraFields\Block\Adminhtml\ImageField` as `block` type in 
 
 ## Developers
 
-* [Juan Alonso](https://github.com/jalogut)
+Staempfli Webteam, and all other [contributors](https://github.com/staempfli/magento2-module-chat-connector/contributors)
 
-Licence
--------
-* **Software tool:** free software under the terms of [GNU General Public License, version 3 (GPLv3)](http://opensource.org/licenses/gpl-3.0)
+## License
 
-Copyright
----------
-(c) 2016 Staempfli AG
+[Open Software License ("OSL") v. 3.0](https://opensource.org/licenses/OSL-3.0)
+
+## Copyright
+
+(c) 2017, Stämpfli AG
