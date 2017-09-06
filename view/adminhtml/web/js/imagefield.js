@@ -45,7 +45,7 @@ define([
             return this.getPreviewImageDiv().find('img').first();
         },
 
-        updateImage: function(event) {
+        updateImage: function() {
             var newImagePath = this.getImagePathInput().val();
             var newImageUrl = this.options.mediaUrl + '/' + newImagePath;
             this.getLinkElement().attr('href', newImageUrl);
@@ -53,7 +53,7 @@ define([
             this.getPreviewImageDiv().show();
         },
 
-        deleteImage: function(event) {
+        deleteImage: function() {
             this.getImagePathInput().val('');
             this.getLinkElement().attr('href', '');
             this.getImgElement().attr('src', '');
