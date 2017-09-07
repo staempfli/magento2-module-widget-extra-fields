@@ -1,5 +1,9 @@
 # Magento 2 Widget Extra Fields
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3711ac6ffa0b44848de375b54ae21c0d)](https://www.codacy.com/app/Staempfli/magento2-module-widget-extra-fields?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=staempfli/magento2-module-widget-extra-fields&amp;utm_campaign=Badge_Grade)
+[![Code Climate](https://codeclimate.com/github/staempfli/magento2-module-widget-extra-fields/badges/gpa.svg)](https://codeclimate.com/github/staempfli/magento2-module-widget-extra-fields)
+[![Issue Count](https://codeclimate.com/github/staempfli/magento2-module-widget-extra-fields/badges/issue_count.svg)](https://codeclimate.com/github/staempfli/magento2-module-widget-extra-fields)
+
 Magento 2 module to add extra field types on widgets
 
 ## Installation
@@ -36,7 +40,7 @@ Use `Staempfli\WidgetExtraFields\Block\Adminhtml\ImageField` as `block` type in 
 
 ## Developers
 
-Staempfli Webteam, and all other [contributors](https://github.com/staempfli/magento2-module-chat-connector/contributors)
+Juan Alonso, and all other [contributors](https://github.com/staempfli/magento2-module-widget-extra-fields/contributors)
 
 ## License
 
