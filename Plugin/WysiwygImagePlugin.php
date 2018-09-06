@@ -42,7 +42,7 @@ class WysiwygImagePlugin
             $absolutePath = $subject->getCurrentPath() . '/' . $filename;
             return $this->mediaDir->getRelativePath($absolutePath);
         }
-        $result = $proceed();
+        $result = $proceed($filename, $renderAsTag);
         return $result;
     }
 
