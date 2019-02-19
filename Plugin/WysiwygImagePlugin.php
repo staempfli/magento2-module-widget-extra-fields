@@ -9,8 +9,10 @@
 namespace Staempfli\WidgetExtraFields\Plugin;
 
 use Magento\Cms\Helper\Wysiwyg\Images as WysiwygImageHelper;
+use Magento\Cms\Block\Adminhtml\Wysiwyg\Images\Content as WysiwygImageContent;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\FileSystem;
+use Magento\Framework\App\RequestInterface;
 
 class WysiwygImagePlugin
 {
@@ -19,9 +21,17 @@ class WysiwygImagePlugin
      */
     private $mediaDir;
 
-    public function __construct(FileSystem $fileSystem)
-    {
+    /**
+     * @var \Magento\Framework\App\RequestInterface
+     */
+    private $request;
+
+    public function __construct(
+        FileSystem $fileSystem,
+        RequestInterface $request
+    ) {
         $this->mediaDir = $fileSystem->getDirectoryRead(DirectoryList::MEDIA);
+        $this->request = $request;
     }
 
     /**
@@ -42,13 +52,34 @@ class WysiwygImagePlugin
             $absolutePath = $subject->getCurrentPath() . '/' . $filename;
             return $this->mediaDir->getRelativePath($absolutePath);
         }
-        $result = $proceed();
+        $result = $proceed($filename, $renderAsTag);
         return $result;
     }
 
+    /**
+     * set widget info for on insert
+     * @param WysiwygImageContent $subject
+     * @param callable $proceed
+     * @return string
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function aroundGetOnInsertUrl(
+        WysiwygImageContent $subject,
+        callable $proceed
+    ) {
+        return $subject->getUrl(
+            'cms/*/onInsert',
+            ['widget' => $this->request->getParam('widget')]);
+    }
+
+    /**
+     * check if result should be a relativ path
+     * @param $renderAsTag
+     * @return bool
+     */
     private function returnRelativePath($renderAsTag): bool
     {
-        if (!$renderAsTag) {
+        if (!$renderAsTag && $this->request->getParam('widget')) {
             return true;
         }
         return false;

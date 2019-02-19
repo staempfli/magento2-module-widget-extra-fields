@@ -58,7 +58,7 @@ class ImageFieldRenderer extends Template implements FormElementRenderer
     {
         $mediaBrowserAjaxUrl = $this->getUrl(
             'cms/wysiwyg_images/index',
-            ['target_element_id' => $elementId, 'type' => 'file']
+            ['target_element_id' => $elementId, 'type' => 'file', 'widget' => true]
         );
         return "MediabrowserUtility.openDialog('$mediaBrowserAjaxUrl')";
     }

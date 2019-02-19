@@ -11,4 +11,7 @@
    <type name="Magento\Cms\Helper\Wysiwyg\Images">
        <plugin name="staempfli_wysiwyg_image_html_declaration" type="\Staempfli\WidgetExtraFields\Plugin\WysiwygImagePlugin"/>
    </type>
+    <type name="Magento\Cms\Block\Adminhtml\Wysiwyg\Images\Content">
+        <plugin name="staempfli_wysiwyg_image_content" type="\Staempfli\WidgetExtraFields\Plugin\WysiwygImagePlugin"/>
+    </type>
 </config>
