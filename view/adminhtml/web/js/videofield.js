@@ -49,7 +49,7 @@ define([
             var newVideoPath = this.getVideoPathInput().val();
             var newVideoUrl = this.options.mediaUrl + '/' + newVideoPath;
             this.getLinkElement().attr('href', newVideoUrl);
-            this.getImgElement().attr('src', newVideoUrl);
+            this.getVideoElement().attr('src', newVideoUrl);
             this.getPreviewVideoDiv().show();
         },
 

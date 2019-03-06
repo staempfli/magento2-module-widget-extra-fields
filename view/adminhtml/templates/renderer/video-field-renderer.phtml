@@ -13,10 +13,10 @@ $videoUrl = $block->getVideoUrl();
 ?>
 <div class="widget-video-field admin__field field <?php echo $element->getRequired()? 'required _required' : ''; ?>"
      data-mage-init='{
-     "widgetImageField": {
-            "imagePathInputSelector": "#<?php echo $element->getId(); ?>",
-            "imagePreviewDivSelector": "div.file-uploader-preview",
-            "imageDeleteButtonSelector": "button.action-remove",
+     "widgetVideoField": {
+            "videoPathInputSelector": "#<?php echo $element->getId(); ?>",
+            "videoPreviewDivSelector": "div.file-uploader-preview",
+            "videoDeleteButtonSelector": "button.action-remove",
             "mediaUrl": "<?php echo $block->getMediaUrl(); ?>"
         }
      }'
@@ -36,9 +36,9 @@ $videoUrl = $block->getVideoUrl();
                class="widget-option <?php echo $element->getRequired()? 'required-entry _required' : ''; ?>"
         />
         <div class="file-uploader-summary">
-            <div class="file-uploader-preview" style="display:<?php echo $imageUrl ? 'block' : 'none'; ?>">
+            <div class="file-uploader-preview video-preview" style="display:<?php echo $videoUrl ? 'block' : 'none'; ?>">
                 <a target="_blank" href="<?php echo $videoUrl; ?>">
-                    <video width="320" height="240" class="preview-video" controls>
+                    <video controls>
                         <source src="<?php echo $videoUrl; ?>" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
