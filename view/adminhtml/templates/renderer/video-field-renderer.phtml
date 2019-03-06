@@ -1,0 +1,62 @@
+<?php
+/**
+ * video-field-renderer.phtml
+ *
+ * @copyright Copyright © 2019 Staempfli AG. All rights reserved.
+ * @author    florian.auderset@staempfli.com
+ */
+?>
+<?php
+/** @var \Staempfli\WidgetExtraFields\Block\Adminhtml\Renderer\VideoFieldRenderer $block */
+$element = $block->getElement();
+$videoUrl = $block->getVideoUrl();
+?>
+<div class="widget-video-field admin__field field <?php echo $element->getRequired()? 'required _required' : ''; ?>"
+     data-mage-init='{
+     "widgetImageField": {
+            "imagePathInputSelector": "#<?php echo $element->getId(); ?>",
+            "imagePreviewDivSelector": "div.file-uploader-preview",
+            "imageDeleteButtonSelector": "button.action-remove",
+            "mediaUrl": "<?php echo $block->getMediaUrl(); ?>"
+        }
+     }'
+>
+    <label class="label admin__field-label"><span><?php echo $element->getLabel(); ?></span></label>
+    <div class="admin__field-control control">
+        <button title="<?php echo __('Upload');?>"
+                type="button"
+                class="action-default scalable"
+                onclick="<?php echo $block->getUploadButtonOnClickAction($element->getId()); ?>">
+            <span><?php echo __('Upload');?></span>
+        </button>
+        <input id="<?php echo $element->getId(); ?>"
+               name="<?php echo $element->getName(); ?>"
+               type="hidden"
+               value="<?php echo $element->getValue(); ?>"
+               class="widget-option <?php echo $element->getRequired()? 'required-entry _required' : ''; ?>"
+        />
+        <div class="file-uploader-summary">
+            <div class="file-uploader-preview" style="display:<?php echo $imageUrl ? 'block' : 'none'; ?>">
+                <a target="_blank" href="<?php echo $videoUrl; ?>">
+                    <video width="320" height="240" class="preview-video" controls>
+                        <source src="<?php echo $videoUrl; ?>" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </a>
+                <div class="actions">
+                    <button type="button" class="action-remove" title="Delete video">
+                        <span><?php echo __("Delete video"); ?></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //<![CDATA[
+    require(['mage/adminhtml/browser']);
+    require(['jquery'], function ($) {
+        $('#widget_options').trigger('contentUpdated');
+    });
+    //]]>
+</script>
