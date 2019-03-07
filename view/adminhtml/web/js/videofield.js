@@ -56,8 +56,12 @@ define([
         deleteVideo: function() {
             this.getVideoPathInput().val('');
             this.getLinkElement().attr('href', '');
-            this.getVideoElement().removeAttribute('src');
-            this.getVideoElement().load();
+
+            this.getVideoElement().find('source').each(
+                function(num,val){
+                    $(this).attr('src', '')
+            });
+
             this.getPreviewVideoDiv().hide();
         }
 
