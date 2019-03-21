@@ -50,6 +50,9 @@ $videoUrl = $block->getVideoUrl();
                 </div>
             </div>
         </div>
+        <?php if($element->getNote()): ?>
+            <div class="note admin__field-note" id="<?php echo $element->getId() . '-note' ?>"><?php echo $element->getNote() ?></div>
+        <?php endif; ?>
     </div>
 </div>
 <script type="text/javascript">
