@@ -1,5 +1,6 @@
 # Magento 2 Widget Extra Fields
 
+[![Project Status: Abandoned – Initial development has started, but there has not yet been a stable, usable release; the project has been abandoned and the author(s) do not intend on continuing development.](http://www.repostatus.org/badges/latest/abandoned.svg)](http://www.repostatus.org/#abandoned)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3711ac6ffa0b44848de375b54ae21c0d)](https://www.codacy.com/app/Staempfli/magento2-module-widget-extra-fields?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=staempfli/magento2-module-widget-extra-fields&amp;utm_campaign=Badge_Grade)
 [![Code Climate](https://codeclimate.com/github/staempfli/magento2-module-widget-extra-fields/badges/gpa.svg)](https://codeclimate.com/github/staempfli/magento2-module-widget-extra-fields)
 [![Issue Count](https://codeclimate.com/github/staempfli/magento2-module-widget-extra-fields/badges/issue_count.svg)](https://codeclimate.com/github/staempfli/magento2-module-widget-extra-fields)
